@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/contact_style.css">
+    <link rel="icon" href="./photos/seven-of-hearts.png">
+    <title>SEVAN | CONTACT</title>
+</head>
+<body>
+    <video autoplay  loop muted id="myVideo">
+        <source src="./video/video2.mp4" type="video/mp4">
+    </video>
+    <nav>
+        <input id="nav-toggle" type="checkbox">
+        <div ><img class="logo" src="./photos/logo.png" alt=""></div>
+        <ul class="links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./About.html">My Collection</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="#">Sign Up</a></li>
+        </ul>
+        <label for="nav-toggle" class="icon-burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </label>
+    </nav>
+
+    <div class="container">
+        <form class="forum">
+            <h2 class="title">Konchem Touch lo unte Chepta</h2> 
+            <input type="text" id = 'peru' placeholder = 'Your Name' required>
+            <input type="email" id = 'mail' placeholder = 'someone@somemail.com' required> 
+            <input type="number" id = 'num' placeholder = 'Your Mobile No.' required> 
+            <textarea id="textarea" rows="5"></textarea>
+            <button type="submit" id = "btn_submit">SUBMIT</button>
+        </form>
+    </div>
+</body>
+<script src="https://smtpjs.com/v3/smtp.js">
+</script>
+<script >
+
+    const form = document.querySelector('.forum');
+
+    function mailSender(e) {
+        e.preventDefault();
+
+        const   name = document.querySelector('#peru'),
+                mail = document.querySelector('#mail'),
+                number = document.querySelector('#num'),
+                message = document.querySelector('#textarea');
+
+        Email.send({
+            SecureToken : " bf4e40c9-c954-453d-94d6-cceea40fe045",
+            To : "sheikabdulrafi@gmail.com",
+            From : mail.value,
+            Subject : "Message From " + name.value + " from SEVAN Website.",
+            Body : "Name: " + name.value + 
+                    "<br> Mail ID: " + mail.value + 
+                    "<br> Mobile: " + number.value  + 
+                    "<br> Message: " + message.value 
+        }).then(
+          message => alert("Submitted Sucessfully")
+        );
+    }
+
+    form.addEventListener('submit', mailSender);
+
+    
+</script>
+</html>
